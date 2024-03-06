@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoremenuRequest;
 use App\Http\Requests\UpdatemenuRequest;
-use App\Models\menu;
+use App\Http\Resources\MenuCollection;
+use App\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -14,6 +15,8 @@ class MenuController extends Controller
     public function index()
     {
         //
+        $menus = Menu::paginate();
+        return new MenuCollection($menus);
     }
 
     /**

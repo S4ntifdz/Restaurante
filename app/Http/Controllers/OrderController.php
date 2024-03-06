@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreorderRequest;
 use App\Http\Requests\UpdateorderRequest;
-use App\Models\order;
+use App\Http\Resources\OrderCollection;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -14,6 +15,9 @@ class OrderController extends Controller
     public function index()
     {
         //
+        $orders = order::paginate();
+        return new OrderCollection($orders);
+
     }
 
     /**

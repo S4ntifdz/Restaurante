@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoretableRequest;
 use App\Http\Requests\UpdatetableRequest;
-use App\Models\table;
+use App\Http\Resources\TableCollection;
+use App\Models\Table;
 
 class TableController extends Controller
 {
@@ -14,6 +15,8 @@ class TableController extends Controller
     public function index()
     {
         //
+        $tables = table::paginate();
+        return new TableCollection($tables);
     }
 
     /**
