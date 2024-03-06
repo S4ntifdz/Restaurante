@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class order extends Model
 {
     use HasFactory;
-    protected $fillable = ['table_id', 'item_id', 'quantity'];
+    protected $fillable = ['table_id', 'item_id', 'quantity', 'total'];
     public function table()
     {
         return $this->belongsTo(Table::class);
@@ -16,6 +16,6 @@ class order extends Model
     
     public function items()
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class)->withPivot('quantity');
     }
 }

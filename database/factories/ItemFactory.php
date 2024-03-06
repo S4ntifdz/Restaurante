@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Item;
+use App\Models\Menu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ItemFactory extends Factory
@@ -24,6 +25,7 @@ class ItemFactory extends Factory
             'type' => $this->faker->randomElement(['food', 'drink']),
             'name' => $this->faker->word,
             'price' => $this->faker->randomFloat(2, 1, 100),
+            'menu_id' => Menu::factory(),
         ];
     }
 }

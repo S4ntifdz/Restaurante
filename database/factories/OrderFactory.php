@@ -7,24 +7,25 @@ use App\Models\Order;
 use App\Models\Table;
 use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\order>
  */
 class OrderFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     protected $model = Order::class;
     public function definition()
     {
+        
+        $tableId = Table::inRandomOrder()->first()->id;
+        $itemId = Item::inRandomOrder()->first()->id;
+
         return [
-            'table_id' => Table::factory(),
-            'item_id' => Item::factory(),
-            'quantity' => $this->faker->numberBetween(1, 10),
+            'item_id' => $itemId,
+            'table_id' => $tableId,
+            'quantity' => $this->faker->numberBetween(1, 5),
+            'total' => $this->faker->randomFloat(2, 1, 100),
         ];
     }
 }
