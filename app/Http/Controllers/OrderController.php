@@ -21,10 +21,10 @@ class OrderController extends Controller
     {
         $filter = new OrdersFilter($request);
         $queryItems = $filter->transform($request);
-        $orders = Order::where($queryItems);
+        $orders = Order::where($queryItems)->with('items');
         return new OrderCollection($orders->paginate()->appends($request->query()));
-
     }
+    
 
     /**
      * Show the form for creating a new resource.
