@@ -6,25 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
-            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
+            $table->float('total')->default(0);
             $table->timestamps();
+    
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
         });
+    
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['table_id']); 
+        });
     }
+    
 };

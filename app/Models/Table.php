@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class table extends Model
 {
     use HasFactory;
-    protected $fillable = ['table_id'];
+    protected $fillable = ['table_id', 'paid'];
     public function orders()
     {
         return $this->hasOne(Order::class);
