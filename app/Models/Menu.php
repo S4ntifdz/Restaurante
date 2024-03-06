@@ -9,6 +9,7 @@ use App\Models\Item;
 class menu extends Model
 {
     use HasFactory;
+    protected $fillable = ['name'];
     public function Items()
     {
         return $this->hasMany(Item::class);
