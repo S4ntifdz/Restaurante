@@ -16,11 +16,17 @@ class TableController extends Controller
      */
     public function index(Request $request)
     {
+
         $filter = new TablesFilter($request);
         $queryItems = $filter->transform($request);
         $tables = Table::where($queryItems);
+        $includeOrders = $request->query('order');
+        if ($includeOrders) {
+            $tables->with(['orders.items']);
+        }
         return new TableCollection($tables->paginate()->appends($request->query()));
     }
+    
 
     /**
      * Show the form for creating a new resource.
