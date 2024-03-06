@@ -14,9 +14,9 @@ class order extends Model
         return $this->belongsTo(Table::class);
     }
     public function getItemIds()
-{
-    return $this->load('items')->items->pluck('id')->toArray();
-}
+    {
+        return $this->load('items')->items->pluck('id')->toArray();
+    }
     public function items()
     {
         return $this->belongsToMany(Item::class)->withPivot('item_id', 'quantity');
