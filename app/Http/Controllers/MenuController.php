@@ -6,17 +6,21 @@ use App\Http\Requests\StoremenuRequest;
 use App\Http\Requests\UpdatemenuRequest;
 use App\Http\Resources\MenuCollection;
 use App\Models\Menu;
+use App\Filters\MenuFilter;
+use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $menus = Menu::paginate();
-        return new MenuCollection($menus);
+        $filter = new MenuFilter($request);
+        $queryItems = $filter->transform($request);
+        $menus = Menu::where($queryItems);
+        return new MenuCollection($menus->paginate()->appends($request->query()));
+
         
     }
 

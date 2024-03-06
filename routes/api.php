@@ -24,17 +24,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers' ],function(){
     
-    Route::apiResource('Orders', OrderController::class);
-    Route::post('Orders/{table_id}/items', [OrderController::class, 'addItems']);
-    Route::get('Orders/{id}/tables', [OrderController::class, 'tables']);
+    Route::apiResource('orders', OrderController::class);
+    Route::post('orders/{table_id}/items', [OrderController::class, 'addItems']);
+    Route::get('orders/{id}/tables', [OrderController::class, 'tables']);
 
-    Route::apiResource('Items', ItemController::class);
-    Route::get('Items/{id}', [ItemController::class]);
+    Route::apiResource('menuitems', ItemController::class);
+    Route::get('menuitems/{id}', [ItemController::class]);
 
-    Route::apiResource('Menus', MenuController::class);
-    Route::get('Menus/{id}/items', [MenuController::class, 'items']);
+    Route::apiResource('menus', MenuController::class);
+    Route::get('menus/{id}/items', [MenuController::class, 'items']);
 
-    Route::apiResource('Tables', TableController::class);
-    Route::get('Tables/{id}/orders', [TableController::class, 'orders']);
+    Route::apiResource('tables', TableController::class);
+    Route::get('tables/{id}/orders', [TableController::class, 'orders']);
 
 });
