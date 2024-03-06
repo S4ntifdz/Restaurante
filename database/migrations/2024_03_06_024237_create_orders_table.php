@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('table_identifier');
+            $table->unsignedBigInteger('table_id');
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
             $table->timestamps();
         });
     }

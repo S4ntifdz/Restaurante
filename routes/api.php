@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers' ],function(){
+    
     Route::apiResource('Orders', OrderController::class);
     Route::post('Orders/{table_id}/items', [OrderController::class, 'addItems']);
     Route::get('Orders/{id}/tables', [OrderController::class, 'tables']);

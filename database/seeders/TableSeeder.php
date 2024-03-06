@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Menu;
-use App\Models\Item;
-use App\Models\Order;
 use App\Models\Table;
+use Database\Factories\OrderFactory;
+use Database\Factories\TableFactory;
+
 class TableSeeder extends Seeder
 {
     /**
@@ -15,12 +14,10 @@ class TableSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $tables = Table::factory(50)->create();
+        $tables = TableFactory::new()->count(50)->create();
 
         $tables->each(function ($table) {
-            $table->orders()->save(Order::factory()->make());
+            $table->orders()->save(OrderFactory::new()->make());
         });
-
     }
 }
