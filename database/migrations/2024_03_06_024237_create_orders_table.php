@@ -6,31 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('table_id');
-            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->float('total');
+            $table->integer('quantity')->default(0);
+            $table->float('total')->default(0);
             $table->timestamps();
+    
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
         });
+    
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['item_id']);
-            $table->dropColumn('item_id');
+            $table->dropForeign(['table_id']); 
         });
     }
+    
 };

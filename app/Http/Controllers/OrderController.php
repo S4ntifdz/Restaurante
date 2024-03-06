@@ -14,9 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-        $orders = order::paginate();
-        return new OrderCollection($orders);
+        $order = Order::with('items')->find(51); // Reemplaza 1 con el ID de la orden que quieres mostrar
+
+        return response()->json($order);
 
     }
 
