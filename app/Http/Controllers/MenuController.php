@@ -17,6 +17,7 @@ class MenuController extends Controller
         //
         $menus = Menu::paginate();
         return new MenuCollection($menus);
+        
     }
 
     /**
