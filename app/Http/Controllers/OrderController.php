@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreorderRequest;
 use App\Http\Requests\UpdateorderRequest;
 use App\Http\Resources\OrderCollection;
+use App\Filters\OrdersFilter;
+
+use Illuminate\Http\Request;
+
+
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -12,11 +17,12 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $order = Order::with('items')->find(51); // Reemplaza 1 con el ID de la orden que quieres mostrar
-
-        return response()->json($order);
+        $filter = new OrdersFilter($request);
+        $queryItems = $filter->transform($request);
+        $orders = Order::where($queryItems);
+        return new OrderCollection($orders->paginate()->appends($request->query()));
 
     }
 

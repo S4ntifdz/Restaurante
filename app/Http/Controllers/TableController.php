@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoretableRequest;
 use App\Http\Requests\UpdatetableRequest;
 use App\Http\Resources\TableCollection;
+use App\Filters\TablesFilter;
+use Illuminate\Http\Request;
 use App\Models\Table;
 
 class TableController extends Controller
@@ -12,11 +14,12 @@ class TableController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $tables = table::paginate();
-        return new TableCollection($tables);
+        $filter = new TablesFilter($request);
+        $queryItems = $filter->transform($request);
+        $tables = Table::where($queryItems);
+        return new TableCollection($tables->paginate()->appends($request->query()));
     }
 
     /**

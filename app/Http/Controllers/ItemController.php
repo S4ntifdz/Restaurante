@@ -6,7 +6,7 @@ use App\Http\Requests\StoreitemRequest;
 use App\Http\Requests\UpdateitemRequest;
 use App\Http\Resources\ItemCollection;
 use App\Models\Item;
-use App\Filter\ItemFilter;
+use App\Filters\ItemsFilter;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -17,7 +17,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         //
-        $filter = new ItemFilter($request);
+        $filter = new ItemsFilter($request);
         $queryItems = $filter->transform($request);
         $items = Item::where($queryItems);
         return new ItemCollection($items->paginate()->appends($request->query()));
