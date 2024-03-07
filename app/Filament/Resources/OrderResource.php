@@ -23,16 +23,47 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('table_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('quantity')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Forms\Components\TextInput::make('total')
+                    ->required()
+                    ->numeric()
+                    ->default(0.00),
+                    Forms\Components\Select::make('item_id')
+                    ->relationship('items', 'name')
+                    ->multiple()
+                    ->required(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
-            ])
+        ->columns([
+            Tables\Columns\TextColumn::make('table_id')
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('quantity')
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('total')
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('pivot.column_name'),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+        ])
             ->filters([
                 //
             ])

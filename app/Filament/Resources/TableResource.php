@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MenuResource\Pages;
-use App\Filament\Resources\MenuResource\RelationManagers;
-use App\Models\Menu;
+use App\Filament\Resources\TableResource\Pages;
+use App\Filament\Resources\TableResource\RelationManagers;
+use App\Models\Table as TableModel;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MenuResource extends Resource
+class TableResource extends Resource
 {
-    protected static ?string $model = Menu::class;
+    protected static ?string $model = TableModel::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,9 +23,8 @@ class MenuResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Toggle::make('paid')
+                    ->required(),
             ]);
     }
 
@@ -33,8 +32,8 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                Tables\Columns\IconColumn::make('paid')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -67,9 +66,9 @@ class MenuResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMenus::route('/'),
-            'create' => Pages\CreateMenu::route('/create'),
-            'edit' => Pages\EditMenu::route('/{record}/edit'),
+            'index' => Pages\ListTables::route('/'),
+            'create' => Pages\CreateTable::route('/create'),
+            'edit' => Pages\EditTable::route('/{record}/edit'),
         ];
     }
 }
