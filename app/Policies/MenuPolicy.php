@@ -14,7 +14,7 @@ class MenuPolicy
     public function viewAny(User $user): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class MenuPolicy
     public function view(User $user, menu $menu): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -32,7 +32,7 @@ class MenuPolicy
     public function create(User $user): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class MenuPolicy
     public function update(User $user, menu $menu): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -50,7 +50,7 @@ class MenuPolicy
     public function delete(User $user, menu $menu): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -59,7 +59,7 @@ class MenuPolicy
     public function restore(User $user, menu $menu): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -68,6 +68,6 @@ class MenuPolicy
     public function forceDelete(User $user, menu $menu): bool
     {
         //
-             return true;
+        return true;
     }
 }

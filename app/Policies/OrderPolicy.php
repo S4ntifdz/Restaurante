@@ -14,7 +14,7 @@ class OrderPolicy
     public function viewAny(User $user): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class OrderPolicy
     public function view(User $user, order $order): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -32,7 +32,7 @@ class OrderPolicy
     public function create(User $user): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -40,8 +40,8 @@ class OrderPolicy
      */
     public function update(User $user, order $order): bool
     {
-        //
-             return true;
+        //        
+        return true;
     }
 
     /**
@@ -59,7 +59,7 @@ class OrderPolicy
     public function restore(User $user, order $order): bool
     {
         //
-             return true;
+        return true;
     }
 
     /**
@@ -68,6 +68,6 @@ class OrderPolicy
     public function forceDelete(User $user, order $order): bool
     {
         //
-             return true;
+        return true;
     }
 }
