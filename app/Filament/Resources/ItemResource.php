@@ -26,7 +26,11 @@ class ItemResource extends Resource
                 Forms\Components\TextInput::make('menu_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('type')
+                Forms\Components\Select::make('type')
+                    ->options([
+                        'food' => 'Food',
+                        'drink' => 'Drink',
+                    ])
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()

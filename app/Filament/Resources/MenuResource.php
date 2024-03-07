@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,6 +30,10 @@ class MenuResource extends Resource
                     'Merienda' => 'Merienda ',
                     'Cena' => 'Cena',
                 ])
+                ->required(),
+                Forms\Components\Select::make('Menu items')
+                ->multiple()
+                ->options(Item::pluck('name', 'id')) 
                 ->required(),
             ]);
                 

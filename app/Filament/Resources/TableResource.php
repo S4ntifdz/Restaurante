@@ -7,6 +7,7 @@ use App\Filament\Resources\TableResource\RelationManagers;
 use App\Models\Table as TableModel;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -23,20 +24,24 @@ class TableResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Toggle::make('paid')
-                    ->required(),
-                Forms\Components\TextInput::make('table_id')
-                    ->required()
-                    ->numeric(),
+                // Forms\Components\Toggle::make('paid')
+                //     ->required(),
+
             ]);
     }
+    
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\IconColumn::make('paid')
+                    ->icon(function (TableModel $record) {
+                        return $record->paid ? 'heroicon-s-check' : 'heroicon-o-x-circle';
+                    })
                     ->boolean(),
+                Tables\Columns\TextColumn::make('id')
+                    ->numeric(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -56,7 +61,9 @@ class TableResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            
             ]);
+
     }
 
     public static function getRelations(): array
