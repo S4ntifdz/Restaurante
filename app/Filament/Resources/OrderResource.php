@@ -23,9 +23,10 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('table_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('table_id')
+                ->relationship('table', 'table_id')
+                ->multiple()
+                ->required(),
                 Forms\Components\TextInput::make('quantity')
                     ->required()
                     ->numeric()
