@@ -14,6 +14,7 @@ class ItemPolicy
     public function viewAny(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -21,7 +22,8 @@ class ItemPolicy
      */
     public function view(User $user, item $item): bool
     {
-        //
+        //        
+        return true;
     }
 
     /**
@@ -30,6 +32,7 @@ class ItemPolicy
     public function create(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -38,6 +41,7 @@ class ItemPolicy
     public function update(User $user, item $item): bool
     {
         //
+        return true;
     }
 
     /**
@@ -46,6 +50,7 @@ class ItemPolicy
     public function delete(User $user, item $item): bool
     {
         //
+                return true;
     }
 
     /**
@@ -54,6 +59,7 @@ class ItemPolicy
     public function restore(User $user, item $item): bool
     {
         //
+                return true;
     }
 
     /**
@@ -61,6 +67,7 @@ class ItemPolicy
      */
     public function forceDelete(User $user, item $item): bool
     {
-        //
+        // 
+        return true;
     }
 }
