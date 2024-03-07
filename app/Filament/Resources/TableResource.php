@@ -25,6 +25,9 @@ class TableResource extends Resource
             ->schema([
                 Forms\Components\Toggle::make('paid')
                     ->required(),
+                Forms\Components\TextInput::make('table_id')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 

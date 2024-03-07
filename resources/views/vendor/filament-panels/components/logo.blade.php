@@ -1,7 +1,8 @@
 @php
     $brandName = filament()->getBrandName();
     $brandLogo = filament()->getBrandLogo();
-    $brandLogoHeight = filament()->getBrandLogoHeight() ?? '1.5rem';
+    $brandLogoHeight = filament()->getBrandLogoHeight() ?? '3.0rem';
+    
     $darkModeBrandLogo = filament()->getDarkModeBrandLogo();
     $hasDarkModeBrandLogo = filled($darkModeBrandLogo);
 
@@ -12,7 +13,8 @@
         'hidden dark:flex' => $hasDarkModeBrandLogo && $isDarkMode,
     ]);
 
-    $logoStyles = "height: {$brandLogoHeight}";
+
+    $logoStyles = " transform: translateX(30%); height: {$brandLogoHeight}";
 @endphp
 
 @capture($content, $logo, $isDarkMode = false)
